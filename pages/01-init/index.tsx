@@ -24,7 +24,7 @@ const SignupForm = () => {
             name='firstName'
             placeholder='First name'>
             {({ input, meta, placeholder }) => (
-              <div>
+              <div className={meta.active ? 'active' : ''}>
                 <label>First Name</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -37,7 +37,7 @@ const SignupForm = () => {
             name='lastName'
             placeholder='Last Name'>
             {({ input, meta, placeholder }) => (
-              <div>
+              <div className={meta.active ? 'active' : ''}>
                 <label>Last Name</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -50,7 +50,7 @@ const SignupForm = () => {
             name='email'
             placeholder='Email'>
             {({ input, meta, placeholder }) => (
-              <div>
+              <div className={meta.active ? 'active' : ''}>
                 <label>Email</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
