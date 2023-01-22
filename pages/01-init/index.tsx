@@ -1,5 +1,5 @@
-import onSubmit from '@/common/onSubmit';
 import React from 'react';
+import RenderCount from '../../common/RenderCount'
 import { Form, Field } from 'react-final-form'
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -19,12 +19,15 @@ const SignupForm = () => {
       <Form onSubmit={showResults}>
         {({ handleSubmit, values, submitting }) => <form onSubmit={handleSubmit}>
 
+          <RenderCount />
+
           <Field
             validate={required}
             name='firstName'
             placeholder='First name'>
             {({ input, meta, placeholder }) => (
               <div className={meta.active ? 'active' : ''}>
+                <RenderCount />
                 <label>First Name</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -38,6 +41,7 @@ const SignupForm = () => {
             placeholder='Last Name'>
             {({ input, meta, placeholder }) => (
               <div className={meta.active ? 'active' : ''}>
+                <RenderCount />
                 <label>Last Name</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -51,6 +55,7 @@ const SignupForm = () => {
             placeholder='Email'>
             {({ input, meta, placeholder }) => (
               <div className={meta.active ? 'active' : ''}>
+                <RenderCount />
                 <label>Email</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
