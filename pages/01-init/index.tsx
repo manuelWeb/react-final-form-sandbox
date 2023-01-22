@@ -1,6 +1,6 @@
 import React from 'react';
 import RenderCount from '../../common/RenderCount'
-import { Form, Field } from 'react-final-form'
+import { Form, Field, FormSpy } from 'react-final-form'
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -83,7 +83,12 @@ const SignupForm = () => {
 
           <button type='submit' disabled={submitting} >submit</button>
 
-          <pre>{JSON.stringify(values, null, 2)} </pre>
+          <FormSpy subscription={{ values: true }}>
+            {({ values }) => <pre>
+              <RenderCount />
+              {JSON.stringify(values, null, 2)}
+            </pre>}
+          </FormSpy>
 
         </form>}
 
