@@ -19,7 +19,11 @@ const SignupForm = () => {
         {({ handleSubmit, values, submitting }) => <form onSubmit={handleSubmit}>
           <div>
             <label>First Name</label>
-            <Field name='firstName' component='input' placeholder='First name' />
+            <Field
+              validate={value => value ? undefined : 'Require'}
+              name='firstName'
+              component='input'
+              placeholder='First name' />
           </div>
 
           <div>
