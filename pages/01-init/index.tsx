@@ -16,12 +16,18 @@ const SignupForm = () => {
   return (
     <div>
       <h1>🏁 React FInal Form</h1>
-      <Form onSubmit={showResults}>
+      <Form onSubmit={showResults} subscription={{ submitting: true }}>
         {({ handleSubmit, values, submitting }) => <form onSubmit={handleSubmit}>
 
           <RenderCount />
 
           <Field
+            subscription={{
+              value: true,
+              active: true,
+              error: true,
+              touched: true,
+            }}
             validate={required}
             name='firstName'
             placeholder='First name'>
@@ -36,6 +42,12 @@ const SignupForm = () => {
           </Field>
 
           <Field
+            subscription={{
+              value: true,
+              active: true,
+              error: true,
+              touched: true,
+            }}
             validate={required}
             name='lastName'
             placeholder='Last Name'>
@@ -50,6 +62,12 @@ const SignupForm = () => {
           </Field>
 
           <Field
+            subscription={{
+              value: true,
+              active: true,
+              error: true,
+              touched: true,
+            }}
             validate={required}
             name='email'
             placeholder='Email'>
