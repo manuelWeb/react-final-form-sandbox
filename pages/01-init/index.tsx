@@ -1,25 +1,26 @@
 import React from 'react';
-import RenderCount from '../../common/RenderCount'
-import { Form, Field, FormSpy } from 'react-final-form'
+import { Form, Field, FormSpy } from 'react-final-form';
+import createDecorator from 'final-form-focus';
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const showResults = async (values: any) => {
   await sleep(1000);
-  // console.log(JSON.stringify(values, null, 2));
   window.alert(JSON.stringify(values, null, 2))
 
 }
+const focusOnError = createDecorator()
 const required = value => value ? undefined : 'Require'
 
 const SignupForm = () => {
   return (
     <div>
       <h1>🏁 React FInal Form</h1>
-      <Form onSubmit={showResults} subscription={{ submitting: true }}>
+      <Form
+        decorators={[focusOnError]}
+        onSubmit={showResults}
+        subscription={{ submitting: true }}>
         {({ handleSubmit, values, submitting }) => <form onSubmit={handleSubmit}>
-
-          <RenderCount />
 
           <Field
             subscription={{
@@ -33,7 +34,6 @@ const SignupForm = () => {
             placeholder='First name'>
             {({ input, meta, placeholder }) => (
               <div className={meta.active ? 'active' : ''}>
-                <RenderCount />
                 <label>First Name</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -53,7 +53,6 @@ const SignupForm = () => {
             placeholder='Last Name'>
             {({ input, meta, placeholder }) => (
               <div className={meta.active ? 'active' : ''}>
-                <RenderCount />
                 <label>Last Name</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -73,7 +72,6 @@ const SignupForm = () => {
             placeholder='Email'>
             {({ input, meta, placeholder }) => (
               <div className={meta.active ? 'active' : ''}>
-                <RenderCount />
                 <label>Email</label>
                 <input {...input} placeholder={placeholder} />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -85,7 +83,6 @@ const SignupForm = () => {
 
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>
-              <RenderCount />
               {JSON.stringify(values, null, 2)}
             </pre>}
           </FormSpy>
