@@ -5,11 +5,12 @@ import { Form, Field } from 'react-final-form'
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const showResults = async (values: any) => {
-  await sleep(2000);
+  await sleep(1000);
   // console.log(JSON.stringify(values, null, 2));
   window.alert(JSON.stringify(values, null, 2))
 
 }
+const required = value => value ? undefined : 'Require'
 
 const SignupForm = () => {
   return (
@@ -17,24 +18,45 @@ const SignupForm = () => {
       <h1>🏁 React FInal Form</h1>
       <Form onSubmit={showResults}>
         {({ handleSubmit, values, submitting }) => <form onSubmit={handleSubmit}>
-          <div>
-            <label>First Name</label>
-            <Field
-              validate={value => value ? undefined : 'Require'}
-              name='firstName'
-              component='input'
-              placeholder='First name' />
-          </div>
 
-          <div>
-            <label>Last Name</label>
-            <Field name='lastName' component='input' placeholder='Last Name' />
-          </div>
+          <Field
+            validate={required}
+            name='firstName'
+            placeholder='First name'>
+            {({ input, meta, placeholder }) => (
+              <div>
+                <label>First Name</label>
+                <input {...input} placeholder={placeholder} />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
 
-          <div>
-            <label>Email</label>
-            <Field name='email' component='input' placeholder='Email' />
-          </div>
+          <Field
+            validate={required}
+            name='lastName'
+            placeholder='Last Name'>
+            {({ input, meta, placeholder }) => (
+              <div>
+                <label>Last Name</label>
+                <input {...input} placeholder={placeholder} />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
+
+          <Field
+            validate={required}
+            name='email'
+            placeholder='Email'>
+            {({ input, meta, placeholder }) => (
+              <div>
+                <label>Email</label>
+                <input {...input} placeholder={placeholder} />
+                {meta.error && meta.touched && <span>{meta.error}</span>}
+              </div>
+            )}
+          </Field>
 
           <button type='submit' disabled={submitting} >submit</button>
 
